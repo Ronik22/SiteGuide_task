@@ -1,0 +1,14 @@
+{% extends "crud/base.html" %}
+{% load static %}
+
+{% block title %}
+    All Vehicles
+{% endblock %}
+
+{% block content %}
+<ul>
+    {% for vehicle in all_vehicles %}
+        <li>{{vehicle}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
