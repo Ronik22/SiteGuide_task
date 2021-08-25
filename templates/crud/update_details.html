@@ -5,6 +5,91 @@
     Add or Update details
 {% endblock %}
 
+{% block update %}active{% endblock %}
+
 {% block content %}
-    {{all_vehicles}}
+<ul class="nav switch-nav nav-tabs mb-4" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#create" type="button" role="tab" aria-controls="home" aria-selected="true">Add Vehicle</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#update" type="button" role="tab" aria-controls="profile" aria-selected="false">Update Vehicle</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="create" role="tabpanel" aria-labelledby="home-tab">
+        <form class="container form-group" method="post">
+            {% csrf_token %}
+            {{add_form.as_p}}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div class="tab-pane fade" id="update" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            {% for vehicle in all_vehicles %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tg{{forloop.counter}}" aria-expanded="false" aria-controls="flush-collapseOne">
+                        {{vehicle.name}}
+                        </button>
+                    </h2>
+                    <div id="tg{{forloop.counter}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <form class="form-group" method="post" action="{% url 'edit_details' vehicle.id %}">
+                                {% csrf_token %}
+                                <p>
+                                    <label for="id_name">Name</label>
+                                    <input value="{{vehicle.name}}" type="text" name="name" maxlength="150" class="form-control" required id="id_name">
+                                </p>
+                                
+                                <p>
+                                    <label for="id_location">Location</label>
+                                    <input value="{{vehicle.location}}" type="text" name="location" maxlength="250" class="form-control" required id="id_location">
+                                </p>
+                                <p>
+                                    <label for="id_speed">Speed</label>
+                                    <input value="{{vehicle.speed}}" type="number" name="speed" step="0.001" class="form-control" required id="id_speed">
+                                </p>
+                                <p>
+                                    <label for="id_avg_speed">Avg speed</label>
+                                    <input type="number" name="avg_speed" value="{{vehicle.avg_speed}}" step="0.001" class="form-control" required id="id_avg_speed">
+                                </p>
+                                <p>
+                                    <label for="id_temperature">Temperature</label>
+                                    <input value="{{vehicle.temperature}}" type="number" name="temperature" step="0.01" class="form-control" required id="id_temperature">
+                                </p>
+                                <p>
+                                    <label for="id_fuel_level">Fuel level</label>
+                                    <input value="{{vehicle.fuel_level}}" type="number" name="fuel_level" min="0" class="form-control" required id="id_fuel_level">
+                                </p>
+                                <p>
+                                    <label for="id_engine_status">Engine status</label>
+                                    <input value="{{vehicle.engine_status}}" type="text" name="engine_status" maxlength="250" class="form-control" required id="id_engine_status">   
+                                </p>
+                                <p>
+                                    <label for="id_camera1">Camera1</label>
+                                    <input value="{{vehicle.camera1}}" type="text" name="camera1" maxlength="250" class="form-control" id="id_camera1">
+                                </p>
+                                <p>
+                                    <label for="id_camera2">Camera2</label>
+                                    <input value="{{vehicle.camera2}}" type="text" name="camera2" maxlength="250" class="form-control" id="id_camera2">
+                                </p>
+                                <p>
+                                    <label for="id_active">Active</label>
+                                    <input type="checkbox" name="active" id="id_active" {% if vehicle.active %} checked {% endif %}>
+                                </p>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <br>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            
+          </div>
+    </div>
+  </div>
+
+
+    
 {% endblock %}

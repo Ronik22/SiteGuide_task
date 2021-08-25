@@ -5,10 +5,49 @@
     All Vehicles
 {% endblock %}
 
+{% block home %}active{% endblock %}
+
 {% block content %}
-<ul>
-    {% for vehicle in all_vehicles %}
-        <li>{{vehicle}}</li>
-    {% endfor %}
-</ul>
+<div class="container">
+<table class="table table-hover table-bordered text-center">
+    <thead style="background-color: #8A21CF; color: #fff;">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Location</th>
+        <th scope="col">Speed</th>
+        <th scope="col">Avg Speed</th>
+        <th scope="col">Temperature (C)</th>
+        <th scope="col">Fuel Level</th>
+        <th scope="col">Engine Status</th>
+        <th scope="col">Active</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for vehicle in all_vehicles %}
+        <tr>
+            <th scope="row">{{vehicle.name}}</th>
+            <td>{{vehicle.location}}</td>
+            <td>{{vehicle.speed}}</td>
+            <td>{{vehicle.avg_speed}}</td>
+            <td>{{vehicle.temperature}}</td>
+            <td>{{vehicle.fuel_level}}%</td>
+            <td>{{vehicle.engine_status}}</td>
+            <td>
+                {% if vehicle.active %}
+                    ON
+                {% else %}
+                    OFF
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'vehicle_details' vehicle.id %}"  class="m-1 d-inline btn btn-primary"><i class='bx bxs-share'></i></a>
+                <a href="{% url 'update_details' %}#{{vehicle.id}}" class="m-1 d-inline btn btn-warning"><i class='bx bx-pencil'></i></a>
+                <a href="{% url 'delete_details' vehicle.id %}" class="m-1 d-inline btn btn-danger"><i class='bx bx-trash'></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
 {% endblock %}
