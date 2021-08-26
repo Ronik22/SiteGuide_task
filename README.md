@@ -18,11 +18,11 @@ Install via git
     
 ## Screenshots
 
-<img src="./demo/details_page.jpg">
-<img src="./demo/list_page.jpg">
-<img src="./demo/add_vehicle.jpg">
-<img src="./demo/list_page2.jpg">
-<img src="./demo/update_vehicle.jpg">
+<img src="./demo/details_page.JPG">
+<img src="./demo/list_page.JPG">
+<img src="./demo/add_vehicle.JPG">
+<img src="./demo/list_page2.JPG">
+<img src="./demo/update_vehicle.JPG">
 
   
 ## Running Tests
