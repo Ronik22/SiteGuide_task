@@ -13,7 +13,7 @@ class VehicleCreateForm(forms.ModelForm):
         for visible in self.visible_fields():
             if not visible.field.widget.__class__.__name__ == CheckboxInput().__class__.__name__:
                 visible.field.widget.attrs['class'] = 'form-control'
-            print(visible)
+            # print(visible)
 
 class VehicleUpdateForm(forms.ModelForm):
     class Meta:

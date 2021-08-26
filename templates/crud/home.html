@@ -9,7 +9,8 @@
 
 {% block content %}
 <div class="container">
-<table class="table table-hover table-bordered text-center">
+<div class="table-responsive">
+<table class="table table-hover table-bordered text-center table-responsive">
     <thead style="background-color: #8A21CF; color: #fff;">
       <tr>
         <th scope="col">Name</th>
@@ -40,14 +41,15 @@
                     OFF
                 {% endif %}
             </td>
-            <td>
-                <a href="{% url 'vehicle_details' vehicle.id %}"  class="m-1 d-inline btn btn-primary"><i class='bx bxs-share'></i></a>
-                <a href="{% url 'update_details' %}#{{vehicle.id}}" class="m-1 d-inline btn btn-warning"><i class='bx bx-pencil'></i></a>
-                <a href="{% url 'delete_details' vehicle.id %}" class="m-1 d-inline btn btn-danger"><i class='bx bx-trash'></i></a>
+            <td class="d-flex justify-content-center align-items-center">
+                <a href="{% url 'vehicle_details' vehicle.id %}"  class="m-1 btn2 btn-primary"><i class='bx bxs-share'></i></a>
+                <a href="{% url 'update_details' %}#{{vehicle.id}}" class="m-1 btn2 btn-warning"><i class='bx bx-pencil'></i></a>
+                <a href="{% url 'delete_details' vehicle.id %}" class="m-1 btn2 btn-danger"><i class='bx bx-trash'></i></a>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+</div>
 </div>
 {% endblock %}
